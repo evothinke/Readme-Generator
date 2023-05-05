@@ -1,7 +1,15 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const license = require("./utils/generateMarkdown")
+const licenses = require('./markdown')
+//const generateLicenseIcons = require('./utils/markdown');
+// const { generateLicenseIcons } = require('./markdown');
+
+
+const licenseChoices =Object.keys(licenses).map(key => ({
+    name:licenses[key],
+    value: key
+}));
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -35,22 +43,7 @@ const questions = [
         message: 'Select a license:',
         name: 'license',
         // All the license choices I found that were available on GitHub
-        choices: [
-            'None',
-            'Apache License 2.0',
-            'GNU General Public License v3.0',
-            'MIT License',
-            'BSD 2-Clause "Simplified" License',
-            'BSD 3-Clause "New" or "Revised" License',
-            'Boost Software License 1.0',
-            'Creative Commons Zero v1.0 Universal',
-            'Eclipse Public License 1.0',
-            'GNU Affero General Public License v3.0',
-            'GNU General Public License v2.0',
-            'GNU Lesser General Public License v3.0',
-            'Mozilla Public License 2.0',
-            'The Unlicense',
-        ],
+        choices: licenseChoices
     },
     {
         type: 'input',
@@ -68,45 +61,59 @@ const questions = [
         name: 'email',
     },
 ];
+function generateLicenseIcons(licensesObjectChoice) {
+    if (licensesObjectChoice !== 'none') {
+      const chosenLicenseInput = licenses[licensesObjectChoice];
+      return `![${chosenLicenseInput}](https://img.shields.io/badge/License-${chosenLicenseInput}-blue.svg)`;
+    }
+    return '';
+  }
+
 
 // Function to generate the README content based on user's answers
-function generateReadmeContent(answers) {
-  return `# ${answers.title}
-
-  ## Description
-  ${answers.description}
+function schablone(answers) {
+    // Call generateLicenseIcons to get the license badge
+   const licenseBadge = generateLicenseIcons(answers.license);
+    
+    // Include the license badge in the License section
+    return `# ${answers.title}
   
-  ## Table of Contents
+    ## Description
+    ${answers.description}
+    
+    ## Table of Contents
+    
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [Credits](#credits)
+    - [License](#license)
+    - [Tests](#tests)
+    - [Questions](#questions)
+    
+    ## Installation
+    ${answers.installation}
+    
+    ## Usage
+    ${answers.usage}
+    
+    ## Credits
+    ${answers.credits}
+    
+    ## License
+    ${answers.license}
+    ${licenseBadge} 
+    
+    ## Tests
+    ${answers.test}
+    
+    ## Questions
+    For any additional questions, contact me at:
+     - [Github](https://github.com/${answers.username})
+     - [Email](${answers.email})
+    
+  `;
+  }
   
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Credits](#credits)
-  - [License](#license)
-  - [Tests](#tests)
-  - [Questions](#questions)
-  
-  ## Installation
-  ${answers.installation}
-  
-  ## Usage
-  ${answers.usage}
-  
-  ## Credits
-  ${answers.credits}
-  
-  ## License
-  ${answers.license}
-  
-  ## Tests
-  ${answers.test}
-  
-  ## Questions
-  For any additional questions, contact me at:
-   - [Github](https://github.com/${answers.username})
-   - [Email](${answers.email})
-  
-`;
-}
 
 // Function to write the README file
 function writeToFile(fileName, data) {
@@ -115,9 +122,10 @@ function writeToFile(fileName, data) {
 
 // Function to initialize the application
 function init() {
-  inquirer.prompt(questions).then((answers) => {
-    const data = generateReadmeContent(answers);
-    writeToFile('README.md', data);
+    inquirer.prompt(questions).then((answers) => {
+        const data = schablone(answers);
+       // const licenseBadge = generateLicenseIcons(answers.license);
+      writeToFile('README.md', data);
   });
 }
 
