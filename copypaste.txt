@@ -1,0 +1,3 @@
+Readme Generator
+
+Create a readme generator app that can be run in the terminal by asking questions related to the project and record user's text answers. It has to have a readme template using markdown. Our generated readme file will have links to our email, github accounts and license badges that will be generated

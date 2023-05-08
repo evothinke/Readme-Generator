@@ -1,11 +1,9 @@
 
 
-  # Readme Generator  <img src="https://img.shields.io/badge/License-MIT-blue.svg"/>
+  # Professional Readme Generator  <img src="https://img.shields.io/badge/License-MIT-blue.svg"/>
 
   ## Description
-  When creating an open source project on GitHub, it’s important to have a high-quality README for the app. This should include what the app is for, how to use the app, how to install it, how to report issues, and how to make contributions—this last part increases the likelihood that other developers will contribute to the success of the project.
-
-  You can quickly and easily generate a README file by using a command-line application to generate one. This allows the project creator to devote more time working on the project.
+  Create a readme generator app that can be run in the terminal by asking questions related to the project and record user's text answers. It has to have a readme template using markdown. Our generated readme file will have links to our email, github accounts and license badges that will be generated
   
   ## Table of Contents
   
@@ -17,22 +15,22 @@
   - [Questions](#questions)
   
   ## Installation
-  no installation instructions
+  nothing to install
   
   ## Usage
-  no
+  it is used to generate a readme file for your project
   
   ## Credits
-  no colabs
+  
   
   ## License
- <img src="https://img.shields.io/badge/License-BSD2-blue.svg"/>
+ <img src="https://img.shields.io/badge/License-MIT-blue.svg"/>
 
    ## Tests
-  no test instr
+  
   
   ## Questions
   For any additional questions, contact me at:
    - [Github](https://github.com/evothinke)
-   - [Email](email@email.com)
+   - [Email](august.tornea@gmail.com)
   
