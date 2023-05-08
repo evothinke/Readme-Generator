@@ -1,13 +1,8 @@
-// TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const licenses = require('./markdown')
-//const generateLicenseIcons = require('./utils/markdown');
-// const { generateLicenseIcons } = require('./markdown');
-
-
-const licenseChoices =Object.keys(licenses).map(key => ({
-    name:licenses[key],
+const { schablone, licenses, generateLicenseIcons } = require('./utils/markdown');
+const licenseChoices = Object.keys(licenses).map(key => ({
+    name: licenses[key],
     value: key
 }));
 
@@ -61,73 +56,26 @@ const questions = [
         name: 'email',
     },
 ];
-function generateLicenseIcons(licensesObjectChoice) {
-    if (licensesObjectChoice !== 'none') {
-      const chosenLicenseInput = licenses[licensesObjectChoice];
-      return `![${chosenLicenseInput}](https://img.shields.io/badge/License-${chosenLicenseInput}-blue.svg)`;
-    }
-    return '';
-  }
-
 
 // Function to generate the README content based on user's answers
-function schablone(answers) {
-    // Call generateLicenseIcons to get the license badge
-   const licenseBadge = generateLicenseIcons(answers.license);
-    
-    // Include the license badge in the License section
-    return `# ${answers.title}
-  
-    ## Description
-    ${answers.description}
-    
-    ## Table of Contents
-    
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Credits](#credits)
-    - [License](#license)
-    - [Tests](#tests)
-    - [Questions](#questions)
-    
-    ## Installation
-    ${answers.installation}
-    
-    ## Usage
-    ${answers.usage}
-    
-    ## Credits
-    ${answers.credits}
-    
-    ## License
-    ${answers.license}
-    ${licenseBadge} 
-    
-    ## Tests
-    ${answers.test}
-    
-    ## Questions
-    For any additional questions, contact me at:
-     - [Github](https://github.com/${answers.username})
-     - [Email](${answers.email})
-    
-  `;
-  }
-  
 
-// Function to write the README file
-function writeToFile(fileName, data) {
-  fs.writeFileSync(fileName, data);
-}
+
 
 // Function to initialize the application
 function init() {
     inquirer.prompt(questions).then((answers) => {
         const data = schablone(answers);
-       // const licenseBadge = generateLicenseIcons(answers.license);
-      writeToFile('README.md', data);
-  });
+        // console.log('Data:', data);      
+        writeToFile('README.md', data);
+    });
+}
+// Function to write the README file
+function writeToFile(fileName, data) {
+    // console.log('Writing to file:', fileName);
+    // console.log('Data:', data);
+    fs.writeFileSync(fileName, data);
 }
 
 // Call the init function to start the application
 init();
+
