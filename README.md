@@ -19,6 +19,8 @@
   
   ## Usage
   it is used to generate a readme file for your project
+[Link to the recorded screen video](https://drive.google.com/file/d/1nmqfYO-CHns4B_hjd3Dhw7KN3ljOIf3t/view?usp=sharing)
+  
   
   ## Credits
   
