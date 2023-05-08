@@ -51,7 +51,7 @@ function schablone(answers) {
   ## Questions
   For any additional questions, contact me at:
    - [Github](https://github.com/${answers.username})
-   - [Email](${answers.email})
+   - [Email](mailto:${answers.email})
   
 `;
 }

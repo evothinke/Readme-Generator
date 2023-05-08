@@ -32,5 +32,5 @@
   ## Questions
   For any additional questions, contact me at:
    - [Github](https://github.com/evothinke)
-   - [Email](august.tornea@gmail.com)
+   - [Email](mailto:august.tornea@gmail.com)
   
